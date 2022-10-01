@@ -1,7 +1,9 @@
 package baseball;
 
+import baseball.view.BaseballView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+    	new BaseballView().baseball();
     }
 }
