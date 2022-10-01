@@ -14,7 +14,7 @@ public class BaseballController {
 	
 	public String doBaseball(String input) {
 		BaseballDTO pitcher = baseball.makePitching(input);
-		return baseball.baseball(pitcher, hitter);
+		return baseball.playBall(pitcher.getNumber(), hitter.getNumber());
 	}
 	
 	public boolean checkStatus(String input) {

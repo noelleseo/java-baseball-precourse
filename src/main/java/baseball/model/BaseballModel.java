@@ -5,16 +5,19 @@ import baseball.util.RegexUtil;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class BaseballModel {
-	public String baseball(BaseballDTO pitcher, BaseballDTO hitter) {
-		BaseballDTO ballCount = new BaseballDTO();
-		char[] parr = pitcher.getNumber().toCharArray();
+	/*
+	 * 타자 객체와 투수 객체의 세팅값을 비교
+	 */
+	public String playBall(String num, String answer) {
+		BaseballDTO result = new BaseballDTO();
+		char[] parr = num.toCharArray();
 		
 		for(int i=0; i<parr.length; i++) {
 			char t = parr[i];
-			checkBalls(hitter.getNumber(), i, t, ballCount);
+			result = countScore(answer, i, t, result);
 		}
 		
-		return getMessage(ballCount);
+		return getMessage(result);
 	}
 	
 	/*
@@ -86,9 +89,9 @@ public class BaseballModel {
 	}
 	
 	/*
-	 * 타자 객체와 투수 객체의 세팅값을 비교하여 스트라이크 or 볼 체크
+	 * 스트라이크 or 볼 체크
 	 */
-	private BaseballDTO checkBalls(String swings, int index, char ball, BaseballDTO result) {
+	private BaseballDTO countScore(String swings, int index, char ball, BaseballDTO result) {
 		if(swings.charAt(index) == ball) { //스트라이크
 			result.setStrike(result.getStrike() + 1);
 			return result;
