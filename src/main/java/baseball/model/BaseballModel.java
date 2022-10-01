@@ -23,9 +23,9 @@ public class BaseballModel {
 	public BaseballDTO makeHitting() {
 		BaseballDTO hitter = new BaseballDTO();
 		
-		hitter.setNumber(hitter.getNumber() + chooseBalls(hitter)); //첫번째 숫자 세팅
-		hitter.setNumber(hitter.getNumber() + chooseBalls(hitter)); //두번째 숫자 세팅
-		hitter.setNumber(hitter.getNumber() + chooseBalls(hitter)); //세번째 숫자 세팅
+		hitter.setNumber(hitter.getNumber() + chooseNumber(hitter)); //첫번째 숫자 세팅
+		hitter.setNumber(hitter.getNumber() + chooseNumber(hitter)); //두번째 숫자 세팅
+		hitter.setNumber(hitter.getNumber() + chooseNumber(hitter)); //세번째 숫자 세팅
 		
 		return hitter;
 	}
@@ -34,7 +34,7 @@ public class BaseballModel {
 	 * 투수(사용자) 객체 생성하여 3자리 숫자 세팅
 	 */
 	public BaseballDTO makePitching(String input) throws IllegalArgumentException{
-		String check = checkBalls(input);
+		String check = checkNumber(input);
 		
 		if(!"".equals(check)) throw new IllegalArgumentException(check);
 
@@ -62,7 +62,7 @@ public class BaseballModel {
 	/*
 	 * 1~9사이 랜덤값 중 객체에 포함되어 있지 않은 숫자 리턴
 	 */
-	private String chooseBalls(BaseballDTO b) {
+	private String chooseNumber(BaseballDTO b) {
 		String rtn = "";
 		
 		while(b.getNumber().indexOf(rtn) > -1) {
@@ -75,7 +75,7 @@ public class BaseballModel {
 	/*
 	 * 사용자 입력값 체크
 	 */
-	private String checkBalls(String input) {
+	private String checkNumber(String input) {
 		RegexUtil r = new RegexUtil();
 		
 		if(!r.match("[^0]*", input)) return Constants.ERR_NOT_VALID_NUM;
