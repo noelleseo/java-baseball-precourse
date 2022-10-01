@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.util.Constants;
 import baseball.util.RegexUtil;
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -35,8 +36,8 @@ public class BaseballModel {
 	public BaseballDTO makePitching(String num) throws IllegalArgumentException{
 		RegexUtil r = new RegexUtil();
 		
-		if(!r.match("\\d{3}", num)) throw new IllegalArgumentException("3자리 숫자가 아닙니다.");
-		if(r.match(".*?(.).*?\\1.*", num)) throw new IllegalArgumentException("중복된 숫자가 포함되어 있습니다.");
+		if(!r.match("\\d{3}", num)) throw new IllegalArgumentException(Constants.ERR_NOT_3_DIGIT_NUM);
+		if(r.match(".*?(.).*?\\1.*", num)) throw new IllegalArgumentException(Constants.ERR_DUPLICATE_NUM);
 
 		BaseballDTO pitcher = new BaseballDTO();
 		pitcher.setNumber(num);
@@ -53,7 +54,7 @@ public class BaseballModel {
 		boolean rtn = false;
 		RegexUtil r = new RegexUtil();
 		
-		if(!r.match("1|2", input)) throw new IllegalArgumentException("1 혹은 2를 입력해 주세요.");
+		if(!r.match("1|2", input)) throw new IllegalArgumentException(Constants.ERR_NOT_1_OR_2);
 		if("1".equals(input)) rtn = true;
 		
 		return rtn;
@@ -94,9 +95,9 @@ public class BaseballModel {
 	private String getMessage(BaseballDTO ballCount) {
 		String msg = "";
 		
-		if(ballCount.getBall() > 0) msg += ballCount.getBall() + "볼";
-		if(ballCount.getStrike() > 0) msg += " " + ballCount.getStrike() + "스트라이크";
-		if("".equals(msg)) msg = "낫싱";
+		if(ballCount.getBall() > 0) msg += ballCount.getBall() + Constants.E_BALL;
+		if(ballCount.getStrike() > 0) msg += " " + ballCount.getStrike() + Constants.E_STRIKE;
+		if("".equals(msg)) msg = Constants.E_NOTHING;
 		
 		return msg.trim();
 	}
