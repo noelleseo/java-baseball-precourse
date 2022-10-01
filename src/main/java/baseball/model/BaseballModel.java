@@ -33,14 +33,13 @@ public class BaseballModel {
 	/*
 	 * 투수(사용자) 객체 생성하여 3자리 숫자 세팅
 	 */
-	public BaseballDTO makePitching(String num) throws IllegalArgumentException{
-		RegexUtil r = new RegexUtil();
+	public BaseballDTO makePitching(String input) throws IllegalArgumentException{
+		String check = checkBalls(input);
 		
-		if(!r.match("\\d{3}", num)) throw new IllegalArgumentException(Constants.ERR_NOT_3_DIGIT_NUM);
-		if(r.match(".*?(.).*?\\1.*", num)) throw new IllegalArgumentException(Constants.ERR_DUPLICATE_NUM);
+		if(!"".equals(check)) throw new IllegalArgumentException(check);
 
 		BaseballDTO pitcher = new BaseballDTO();
-		pitcher.setNumber(num);
+		pitcher.setNumber(input);
 		
 		return pitcher;
 	}
@@ -71,6 +70,19 @@ public class BaseballModel {
 		}
 		
 		return rtn;
+	}
+	
+	/*
+	 * 사용자 입력값 체크
+	 */
+	private String checkBalls(String input) {
+		RegexUtil r = new RegexUtil();
+		
+		if(!r.match("[^0]*", input)) return Constants.ERR_NOT_VALID_NUM;
+		if(!r.match("\\d{3}", input)) return Constants.ERR_NOT_3_DIGIT_NUM;
+		if(r.match(".*?(.).*?\\1.*", input)) return Constants.ERR_DUPLICATE_NUM;
+		
+		return "";
 	}
 	
 	/*

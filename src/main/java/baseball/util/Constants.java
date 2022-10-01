@@ -13,6 +13,7 @@ public class Constants {
 	
 	//exception
 	public static final String ERR_NOT_3_DIGIT_NUM = "3자리 숫자가 아닙니다.";
+	public static final String ERR_NOT_VALID_NUM = "허용되지 않는 숫자가 포함되어 있습니다.";
 	public static final String ERR_DUPLICATE_NUM = "중복된 숫자가 포함되어 있습니다.";
 	public static final String ERR_NOT_1_OR_2 = "1 혹은 2를 입력해 주세요.";
 }
