@@ -11,4 +11,9 @@ public class BaseballController {
 		baseball = new BaseballModel();
 		hitter = baseball.makeHitting();
 	}
+	
+	public String doBaseball(String input) {
+		BaseballDTO pitcher = baseball.makePitching(input);
+		return baseball.baseball(pitcher, hitter);
+	}
 }

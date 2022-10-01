@@ -1,6 +1,7 @@
 package baseball.view;
 
 import baseball.controller.BaseballController;
+import camp.nextstep.edu.missionutils.Console;
 
 public class BaseballView {
 	private BaseballController controller = new BaseballController();
@@ -27,6 +28,11 @@ public class BaseballView {
 	 * 게임 진행
 	 */
 	private void doBaseball() {
+		System.out.print("숫자를 입력해주세요 : ");
+		
+		String result = controller.doBaseball(Console.readLine());
+		
+		System.out.println(result);
 	}
 	
 	/*
