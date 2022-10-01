@@ -16,4 +16,8 @@ public class BaseballController {
 		BaseballDTO pitcher = baseball.makePitching(input);
 		return baseball.baseball(pitcher, hitter);
 	}
+	
+	public boolean checkStatus(String input) {
+		return baseball.checkStatus(input);
+	}
 }

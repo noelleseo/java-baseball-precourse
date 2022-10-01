@@ -45,6 +45,21 @@ public class BaseballModel {
 	}
 	
 	/*
+	 * 게임 종료 후 재시작 여부 확인
+	 * 1 : 게임 속행
+	 * 2 : 게임 종료
+	 */
+	public boolean checkStatus(String input) {
+		boolean rtn = false;
+		RegexUtil r = new RegexUtil();
+		
+		if(!r.match("1|2", input)) throw new IllegalArgumentException("1 혹은 2를 입력해 주세요.");
+		if("1".equals(input)) rtn = true;
+		
+		return rtn;
+	}
+	
+	/*
 	 * 1~9사이 랜덤값 중 객체에 포함되어 있지 않은 숫자 리턴
 	 */
 	private String chooseBalls(BaseballDTO b) {
