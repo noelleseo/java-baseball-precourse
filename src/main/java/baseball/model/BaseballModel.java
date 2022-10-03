@@ -15,8 +15,8 @@ public class BaseballModel {
         char[] numArr = num.toCharArray();
 
         for (int i = 0; i < numArr.length; i++) {
-            char t = numArr[i];
-            result = countScore(answer, i, t, result);
+            char c = numArr[i];
+            result = countScore(answer, i, c, result);
         }
 
         checkResult(result);
@@ -118,13 +118,13 @@ public class BaseballModel {
     /*
      * 스트라이크 or 볼 체크
      */
-    private BaseballVO countScore(String swings, int index, char ball, BaseballVO result) {
-        if (swings.charAt(index) == ball) { // 스트라이크
+    private BaseballVO countScore(String answer, int index, char c, BaseballVO result) {
+        if (answer.charAt(index) == c) { // 스트라이크
             result.addStrikeCount(1);
             return result;
         }
 
-        if (swings.indexOf(Character.toString(ball)) > -1) { // 볼
+        if (answer.indexOf(Character.toString(c)) > -1) { // 볼
             result.addBallCount(1);
         }
 
