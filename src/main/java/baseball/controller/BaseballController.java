@@ -1,23 +1,30 @@
 package baseball.controller;
 
 import baseball.model.BaseballModel;
-import baseball.model.BaseballDTO;
+import baseball.model.BaseballVO;
+import baseball.util.Constants;
 
 public class BaseballController {
-	private BaseballDTO hitter;
-	private BaseballModel baseball;
-	
-	public void initBaseball() {
-		baseball = new BaseballModel();
-		hitter = baseball.makeHitting();
-	}
-	
-	public String doBaseball(String input) {
-		BaseballDTO pitcher = baseball.makePitching(input);
-		return baseball.playBall(pitcher.getNumber(), hitter.getNumber());
-	}
-	
-	public boolean checkStatus(String input) {
-		return baseball.checkStatus(input);
-	}
+    private BaseballVO hitter;
+    private BaseballModel baseball;
+
+    public void initBaseball() {
+        baseball = new BaseballModel();
+        hitter = baseball.makeHitting();
+    }
+
+    public String doBaseball(String input) {
+        BaseballVO pitcher = baseball.makePitching(input);
+        String result = baseball.playBall(pitcher.getNumber(), hitter.getNumber());
+        
+        return result;
+    }
+
+    public boolean checkRetry(String input) {
+        return baseball.checkRetry(input);
+    }
+
+    public boolean getGameStatus() {
+        return baseball.getGameStatus();
+    }
 }
